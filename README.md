@@ -35,13 +35,13 @@ Clone this repo:
 ```bash
     git clone https://github.com/<your-username>/dubai-hangout-recommender.git
     cd dubai-hangout-recommender
-
+```
 
 Install dependencies:
 
 ```bash
     npm install
-
+```
 Create a .env file in the project root with your API key:
 
 ```text
@@ -50,12 +50,12 @@ Create a .env file in the project root with your API key:
  or if using OpenAI:
 
     OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
-
+```
 Run in development mode:
 
 ```bash
     npm run dev
-
+```
 Open http://localhost:3000 in your browser.
 
 Project Structure
@@ -73,7 +73,7 @@ Project Structure
 ├── package.json
 ├── tsconfig.json
 └── README.md
-
+```
 Scripts
 
 

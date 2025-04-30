@@ -23,40 +23,41 @@ A mini AI-powered app that recommends three local hangout spots in Dubai based o
    ```bash
    npm run dev
 
-In the bottom Ports panel, find 3000, click the globe 🌐 icon to make it public, and then click Open in Browser.
+3. In the bottom Ports panel, find 3000, click the globe 🌐 icon to make it public, and then click Open in Browser.
 
-Share the generated URL (e.g. https://3000-abc123.githubpreview.dev) with anyone—they can instantly try your app.
+4. Share the generated URL (e.g. https://3000-abc123.githubpreview.dev) with anyone—they can instantly try your app.
 
 Getting Started Locally
 If you prefer running locally:
 
-Clone this repo:
+1. Clone this repo:
 
 ```bash
     git clone https://github.com/<your-username>/dubai-hangout-recommender.git
     cd dubai-hangout-recommender
 ```
 
-Install dependencies:
+2. Install dependencies:
 
 ```bash
     npm install
 ```
-Create a .env file in the project root with your API key:
+3. Create a .env file in the project root with your API key:
 
 ```text
     HUGGINGFACEHUB_API_KEY=hf_XXXXXXXXXXXXXXXXXXXX
-
+```
  or if using OpenAI:
 
+```text
     OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
 ```
-Run in development mode:
+4. Run in development mode:
 
 ```bash
     npm run dev
 ```
-Open http://localhost:3000 in your browser.
+5. Open http://localhost:3000 in your browser.
 
 Project Structure
 
@@ -76,35 +77,39 @@ Project Structure
 ```
 Scripts
 
-
-npm run dev
+```bash
+- npm run dev
+```
 Builds and runs the server in one step (ideal for Codespaces).
 
-
-npm run build
+```bash
+- npm run build
+```
 Compiles TypeScript into dist/.
 
-
-npm start
+```bash
+- npm start
+```
 Runs the compiled server (node dist/server.js).
 
 Environment Variables
 
-HUGGINGFACEHUB_API_KEY — Your Hugging Face Inference API key
+- HUGGINGFACEHUB_API_KEY — Your Hugging Face Inference API key
 
-OPENAI_API_KEY — (Optional) Your OpenAI API key, if you switch models
+- OPENAI_API_KEY — (Optional) Your OpenAI API key, if you switch models
 
 Remember not to commit your .env or API keys.
 
 Deployment Options
-GitHub Codespaces: Follow the “Live Preview” steps above—-instant sharing.
+- GitHub Codespaces: Follow the “Live Preview” steps above—-instant sharing.
 
 
 Acknowledgments
-LangChain.js
 
-Tailwind CSS
+- LangChain.js
 
-Hugging Face Inference API
+- Tailwind CSS
 
-Enjoy building—and sharing—your Dubai Hangout Recommender! 
+- Hugging Face Inference API
+
+Enjoy building—and sharing!

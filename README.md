@@ -33,24 +33,23 @@ If you prefer running locally:
 Clone this repo:
 
 bash
-Copy
-Edit
+
 git clone https://github.com/<your-username>/dubai-hangout-recommender.git
 cd dubai-hangout-recommender
+
 Install dependencies:
 
 bash
-Copy
-Edit
+
 npm install
 Create a .env file in the project root with your API key:
 
-text
-Copy
-Edit
+
 HUGGINGFACEHUB_API_KEY=hf_XXXXXXXXXXXXXXXXXXXX
-# or if using OpenAI:
-# OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
+
+ or if using OpenAI:
+
+OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
 
 Run in development mode:
 

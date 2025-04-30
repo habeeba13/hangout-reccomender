@@ -27,7 +27,7 @@ A mini AI-powered app that recommends three local hangout spots in Dubai based o
 
 4. Share the generated URL (e.g. https://3000-abc123.githubpreview.dev) with anyone—they can instantly try your app.
 
-Getting Started Locally
+## Getting Started Locally
 If you prefer running locally:
 
 1. Clone this repo:
@@ -59,7 +59,7 @@ If you prefer running locally:
 ```
 5. Open http://localhost:3000 in your browser.
 
-Project Structure
+## Project Structure
 
 ```pgsql
 .
@@ -75,7 +75,7 @@ Project Structure
 ├── tsconfig.json
 └── README.md
 ```
-Scripts
+## Scripts
 
 ```bash
 - npm run dev
@@ -92,7 +92,7 @@ Compiles TypeScript into dist/.
 ```
 Runs the compiled server (node dist/server.js).
 
-Environment Variables
+## Environment Variables
 
 - HUGGINGFACEHUB_API_KEY — Your Hugging Face Inference API key
 
@@ -100,11 +100,12 @@ Environment Variables
 
 Remember not to commit your .env or API keys.
 
-Deployment Options
+## Deployment Options
+
 - GitHub Codespaces: Follow the “Live Preview” steps above—-instant sharing.
 
 
-Acknowledgments
+## Acknowledgements
 
 - LangChain.js
 

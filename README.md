@@ -82,15 +82,6 @@ If you prefer running locally:
 ```
 Builds and runs the server in one step (ideal for Codespaces).
 
-```bash
-- npm run build
-```
-Compiles TypeScript into dist/.
-
-```bash
-- npm start
-```
-Runs the compiled server (node dist/server.js).
 
 ## Environment Variables
 

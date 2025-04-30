@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hangout Spots Recommender</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Montserrat font -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" 
+    rel="stylesheet"
+  >
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #1e3a8a, #5b21b6, #000000);
+      color: white;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { opacity: 0; animation: fadeIn 0.6s ease-out both; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <div id="app" class="flex flex-col items-center justify-center min-h-screen transition-all duration-700">
+
+    <!-- Input Section -->
+    <div id="inputSection" class="flex flex-col items-center space-y-4">
+      <h1 class="text-4xl font-bold text-white">What’s your vibe today?</h1>
+      <p class="text-gray-300 text-center max-w-md">
+        Let me know your mood and I’ll pick out three perfect Dubai hangouts just for you.
+      </p>
+      <div class="flex space-x-2">
+        <input
+          id="vibeInput"
+          type="text"
+          placeholder="e.g. chill, adventurous…"
+          class="p-3 rounded-l-lg bg-gray-800 border-2 border-white text-white focus:outline-none"
+        />
+        <button
+          id="recommendBtn"
+          class="px-6 py-3 bg-white text-black font-semibold rounded-r-lg hover:bg-gray-200 transition"
+        >
+          Go
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div
+      id="cardsSection"
+      class="mt-12 w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0 transition-opacity duration-700"
+    ></div>
+
+    <div id="errorMsg" class="mt-6 text-red-500"></div>
+  </div>
+
+  <script>
+    const app          = document.getElementById("app");
+    const cardsSection = document.getElementById("cardsSection");
+    const errorDiv     = document.getElementById("errorMsg");
+    const vibeInput    = document.getElementById("vibeInput");
+    const btn          = document.getElementById("recommendBtn");
+
+    function showLoading() {
+      cardsSection.innerHTML =
+        '<p class="col-span-3 text-center text-gray-300">Loading…</p>';
+      cardsSection.classList.remove("opacity-0");
+    }
+
+    btn.addEventListener("click", async () => {
+      const vibe = vibeInput.value.trim();
+      errorDiv.textContent = "";
+      cardsSection.innerHTML = "";
+
+      if (!vibe) {
+        errorDiv.textContent = "Please enter a vibe!";
+        return;
+      }
+
+      // Animate input up
+      app.classList.replace("justify-center", "items-start");
+      app.classList.replace("min-h-screen", "pt-8");
+
+      showLoading();
+
+      try {
+        const res = await fetch("/api/recommend", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ vibe })
+        });
+        if (!res.ok) {
+          const txt = await res.text();
+          throw new Error(`Server ${res.status}: ${txt}`);
+        }
+        const { recommendations } = await res.json();
+
+        if (!recommendations?.length) {
+          cardsSection.innerHTML =
+            '<p class="col-span-3 text-center text-gray-300">No spots found.</p>';
+          return;
+        }
+
+        cardsSection.innerHTML = "";
+
+        recommendations.forEach((place, idx) => {
+          const card = document.createElement("div");
+          card.className =
+            "fade-in bg-gray-800 border border-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300 p-6 flex flex-col";
+          card.style.animationDelay = `${idx * 100}ms`;
+
+          card.innerHTML = `
+            <div class="flex items-center mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   class="h-6 w-6 text-white mr-2"
+                   fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.125 6.54a1 1 0 00.95.69h6.902c.969 0 1.371 1.24.588 1.81l-5.593 4.073a1 1 0 00-.364 1.118l2.125 6.54c.3.921-.755 1.688-1.538 1.118l-5.593-4.073a1 1 0 00-1.176 0L5.097 23.648c-.783.57-1.838-.197-1.538-1.118l2.125-6.54a1 1 0 00-.364-1.118L.727 11.967c-.783-.57-.38-1.81.588-1.81h6.902a1 1 0 00.95-.69l2.125-6.54z"/>
+              </svg>
+              <h2 class="text-2xl font-bold text-white">${place.name}</h2>
+            </div>
+            <p class="text-gray-300 flex-grow">${place.description}</p>
+          `;
+          cardsSection.appendChild(card);
+        });
+      } catch (err) {
+        console.error(err);
+        cardsSection.innerHTML = "";
+        errorDiv.textContent = "Oops! " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

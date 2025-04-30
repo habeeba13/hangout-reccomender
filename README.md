@@ -33,8 +33,8 @@ If you prefer running locally:
 1. Clone this repo:
 
 ```bash
-    git clone https://github.com/<your-username>/dubai-hangout-recommender.git
-    cd dubai-hangout-recommender
+    git clone https://github.com/habeeba13/hangout-recommender.git
+    cd hangout-recommender
 ```
 
 2. Install dependencies:
